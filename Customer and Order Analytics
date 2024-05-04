@@ -33,3 +33,21 @@ FROM FebSales
 LEFT JOIN customers ON FebSales.orderID = customers.order_id
 WHERE orderID <> 'Order ID' AND length(orderID) = 6
 AND Quantity > 2;
+
+--Using different date and LIKE functions
+SELECT orderdate FROM FebSales
+WHERE orderdate between '02/13/19 00:00' AND '02/18/19 00:00'
+
+SELECT location FROM FebSales
+WHERE orderdate = '02/18/19 01:35'
+
+SELECT sum(quantity) as sum FROM FebSales
+WHERE orderdate like '02/18/19%'
+
+SELECT distinct Product FROM FebSales
+WHERE Product like '%Batteries%'
+
+--List all the products sold in Los Angeles in February, and include how many of each were sold.
+SELECT Product, count(Product) FROM FebSales
+WHERE location like '%Los Angeles%'
+GROUP BY Product
